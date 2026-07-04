@@ -24,8 +24,7 @@ jobs:
         run: |
           LAST_HASH=""
           if [ -f last-hash.txt ]; then LAST_HASH=$(cat last-hash.txt); fi
-
-          OUTPUT=$(dotnet run --project src/ApiChecker)
+          OUTPUT=$(dotnet run --project src/ApiChecker -- .)
           NEW_HASH=$(echo "$OUTPUT" | grep '^HASH=' | cut -d'=' -f2)
           echo "$NEW_HASH" > last-hash.txt
 
